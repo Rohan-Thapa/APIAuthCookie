@@ -42,7 +42,15 @@ builder.Services.AddAuthentication(options =>
 // Services
 builder.Services.AddScoped<ITokenService, TokenService>();
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Middleware pipeline
 app.UseHttpsRedirection();
